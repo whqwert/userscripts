@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Old Reddit Broken Link Fixer
 // @namespace    https://github.com/qwhert/userscripts
-// @version      0.1
+// @version      0.2
 // @description  Fixes incorrect URL backslash placement in comments
 // @author       whqwert
 // @match        https://*.reddit.com/*/*/comments/*
@@ -13,10 +13,18 @@
 // ==/UserScript==
 (function () {
     'use strict';
-    document.querySelectorAll('.commentarea > .sitetable > .thing a[href*="%5C"]') // searches for urls in comments with backslashes
+    function removeBackslashes(a) {
+        a.href = a.href.replace(/%5C(_|")/g, "$1");
+        a.innerText = a.innerText.replace(/\\(_|")/g, "$1");
+    }
+    // Post
+    document.querySelectorAll('#siteTable > .thing > .entry > .expando > form > .usertext-body > .md a[href*="%5C"]')
         .forEach(a => {
-            // removes backslashes that are before underscores or quotes
-            a.href = a.href.replace(/%5C(_|")/g, "$1");
-            a.innerText = a.innerText.replace(/\\(_|")/g, "$1");
+            removeBackslashes(a)
+        })
+    // Comments
+    document.querySelectorAll('.commentarea > .sitetable > .thing a[href*="%5C"]')
+        .forEach(a => {
+            removeBackslashes(a);
         })
 })();
