@@ -6,6 +6,7 @@
 // @author       whqwert
 // @match        https://*.reddit.com/*/*/comments/*
 // @icon         https://www.reddit.com/favicon.ico
+// @updateURL    https://github.com/qwhert/userscripts/raw/main/Old-Reddit-Link-Fixer.user.js
 // @supportURL   https://github.com/qwhert/userscripts/issues
 // @license      MIT
 // @run-at       document-end
