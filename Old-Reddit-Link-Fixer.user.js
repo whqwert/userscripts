@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Old Reddit Broken Link Fixer
-// @namespace    https://old.reddit.com/
+// @namespace    https://github.com/qwhert/userscripts
 // @version      0.1
 // @description  Fixes incorrect URL backslash placement in comments
 // @author       whqwert
 // @match        https://*.reddit.com/*/*/comments/*
 // @icon         https://www.reddit.com/favicon.ico
+// @supportURL   https://github.com/qwhert/userscripts/issues
+// @license      MIT
 // @run-at       document-end
 // ==/UserScript==
 (function () {
