@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bandcamp Downloader
 // @namespace    https://github.com/qwhert/userscripts
-// @version      1.0
+// @version      1.1
 // @description  Adds a download link to songs on Bandcamp
 // @author       whqwert
 // @match        https://*.bandcamp.com/*
@@ -40,9 +40,9 @@
         if (table.length) { // isAlbum
             const dlinks = document.getElementsByClassName('dl_link');
             adata.trackinfo.forEach((track, i) => {
-                let link = dlinks[i]
-                let file = track.file['mp3-128']
-                let title = track.title
+                const link = dlinks[i]
+                const file = track.file['mp3-128']
+                const title = track.title
 
                 link.innerHTML =
                     `<a
