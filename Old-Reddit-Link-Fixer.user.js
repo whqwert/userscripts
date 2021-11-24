@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Old Reddit Broken Link Fixer
 // @namespace    https://github.com/qwhert/userscripts
-// @version      0.2
+// @version      0.2.1
 // @description  Fixes incorrect backslash placement in links on Old Reddit
 // @author       whqwert
 // @match        https://*.reddit.com/*/*/comments/*
@@ -10,6 +10,7 @@
 // @license      MIT
 // @run-at       document-end
 // ==/UserScript==
+
 (function () {
     'use strict';
     function removeBackslashes(a) {
@@ -19,7 +20,7 @@
     // Post
     document.querySelectorAll('#siteTable > .thing > .entry > .expando > form > .usertext-body > .md a[href*="%5C"]')
         .forEach(a => {
-            removeBackslashes(a)
+            removeBackslashes(a);
         })
     // Comments
     document.querySelectorAll('.commentarea > .sitetable > .thing a[href*="%5C"]')
