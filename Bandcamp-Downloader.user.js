@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bandcamp Downloader
 // @namespace    https://github.com/qwhert/userscripts
-// @version      1.0.2
+// @version      1.0.3
 // @description  Adds a download link to songs on Bandcamp
 // @author       whqwert
 // @match        https://*.bandcamp.com/*
@@ -29,7 +29,7 @@
                               Download
                         </button>
                   </span>
-            </li>`
+            </li>`;
         function downloadSong(file, title) {
             GM_download({
                 url: file,
@@ -40,23 +40,23 @@
         if (table.length) { // isAlbum
             const dlinks = document.getElementsByClassName('dl_link');
             adata.trackinfo.forEach((track, i) => {
-                const link = dlinks[i]
-                const file = track.file['mp3-128']
-                const title = track.title
+                const link = dlinks[i];
+                const file = track.file['mp3-128'];
+                const title = track.title;
 
                 link.innerHTML =
                     `<a
-                    href="${file}"
-                    title="${adata.artist + ' - ' + title}">
-                    download
-                </a>`
+                        href="${file}"
+                        title="${adata.artist + ' - ' + title}">
+                        download
+                    </a>`;
                 link.firstChild.onclick = () => {
                     downloadSong(file, title);
                     return false;
                 }
             })
         } else { // isSong
-            const file = unsafeWindow.TralbumData.trackinfo[0].file['mp3-128']
+            const file = unsafeWindow.TralbumData.trackinfo[0].file['mp3-128'];
             albutton.insertAdjacentHTML('beforeend', downloadButtonHTML);
             document.getElementById('download-button').onclick = () => {
                 downloadSong(file, adata.current.title);
