@@ -4,6 +4,10 @@
 
 Removes incorrect backslashes in links on Old Reddit
 
+[<img src="examples/Reddit_broken_link_fixer_example.gif" height="180px">](examples/Reddit_broken_link_fixer_example.gif)
+
+&nbsp;
+
 ## Bandcamp Downloader
 
 ### [GitHub](https://github.com/qwhert/userscripts/raw/main/Bandcamp-Downloader.user.js) | [Greasy Fork](https://greasyfork.org/en/scripts/435824-bandcamp-downloader) 
