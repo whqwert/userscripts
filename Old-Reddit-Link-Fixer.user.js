@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Old Reddit Broken Link Fixer
 // @namespace    https://github.com/qwhert/userscripts
-// @version      1.0.0
+// @version      1.0.1
 // @description  Fixes incorrect backslash placement in links on Old Reddit
 // @author       whqwert
 // @match        https://*.reddit.com/*/*/comments/*
@@ -32,11 +32,10 @@
             })
     }
 
-    new MutationObserver((ms, me) => {
+    new MutationObserver(function () {
         if (document.getElementsByClassName('commentarea').length) {
-            me.disconnect();
+            this.disconnect();
             fixLinks();
-            return;
         }
     }).observe(document, {
         subtree: true,
