@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Old Reddit Broken Link Fixer
 // @namespace    https://github.com/qwhert/userscripts
-// @version      1.1.1
+// @version      1.1.2
 // @description  Fixes incorrect backslash placement in links on Old Reddit
 // @author       whqwert
-// @match        https://*.reddit.com/*/*/comments/*
+// @match        https://*.reddit.com/r/*/comments/*
 // @icon         https://www.reddit.com/favicon.ico
 // @supportURL   https://github.com/qwhert/userscripts/issues
 // @license      MIT
