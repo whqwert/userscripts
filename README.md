@@ -4,7 +4,7 @@
 
 Removes incorrect backslashes in links on Old Reddit
 
-[<img src="examples/Reddit_broken_link_fixer_example.gif" height="180px">](examples/Reddit_broken_link_fixer_example.gif)
+[<img src="examples/Reddit_broken_link_fixer_example.gif" height="180px">](https://raw.githubusercontent.com/qwhert/userscripts/main/examples/Reddit_broken_link_fixer_example.gif)
 
 &nbsp;
 
