@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Old Reddit Broken Link Fixer
 // @namespace    https://github.com/qwhert/userscripts
-// @version      1.2.2
+// @version      1.2.3
 // @description  Fixes incorrect backslash placement in links on Old Reddit
 // @author       whqwert
 // @match        https://*.reddit.com/*/*/comments/*
@@ -20,18 +20,10 @@
 	}
 
 	function fixLinks() {
-		// Posts
 		document
 			.querySelectorAll(
-				'#siteTable > .thing > .entry > .expando > form > .usertext-body > .md a[href*="%5C"]'
-			)
-			.forEach(a => {
-				removeBackslashes(a);
-			});
-		// Comments
-		document
-			.querySelectorAll(
-				'.commentarea > .sitetable > .thing a[href*="%5C"]'
+				`#siteTable > .thing > .entry > .expando > form > .usertext-body > .md a[href*="%5C"],
+				.commentarea > .sitetable > .thing a[href*="%5C"]`
 			)
 			.forEach(a => {
 				removeBackslashes(a);
@@ -50,7 +42,7 @@
 	}
 
 	function addMoreButtonListener() {
-		const more = document.querySelector('a[id^="more"]');
+		const more = document.querySelector('a[id^="more_"]');
 		if (more) {
 			more.addEventListener('click', function () {
 				observeNewComments();
