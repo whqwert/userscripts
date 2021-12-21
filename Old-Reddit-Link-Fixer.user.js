@@ -14,12 +14,14 @@
 (function () {
 	'use strict';
 
+	// Function that actually removes the backslashes from links
 	function removeBackslashes(a) {
 		a.href = a.href.replace(/%5C([\-_"])/g, '$1');
 		a.innerText = a.innerText.replace(/\\([\-_"])/g, '$1');
 	}
 
-	function fixLinks() {
+	// For link in comments and post, remove backslashes in link
+	function fixAllLinks() {
 		document
 			.querySelectorAll(
 				`#siteTable > .thing > .entry > .expando > form > .usertext-body > .md a[href*="%5C"],
@@ -30,6 +32,7 @@
 			});
 	}
 
+	// When the 'load more comments' button is pressed, it waits for new comments to load and then runs the link fixer
 	function observeNewComments() {
 		const wait = document.querySelector('.commentarea > .sitetable');
 		if (wait) {
@@ -42,7 +45,7 @@
 	}
 
 	function addMoreButtonListener() {
-		const more = document.querySelector('a[id^="more_"]');
+		const more = document.querySelector('a[id^="more_"]'); // 'load more comments' button
 		if (more) {
 			more.addEventListener('click', function () {
 				observeNewComments();
@@ -50,12 +53,13 @@
 		}
 	}
 
-	function runLinkFixer(obs) {
-		obs.disconnect();
-		fixLinks();
+	function runLinkFixer(observer) {
+		observer.disconnect();
+		fixAllLinks();
 		addMoreButtonListener();
 	}
 
+	// Fix links on load
 	new MutationObserver(function () {
 		if (document.getElementsByClassName('commentarea').length) {
 			runLinkFixer(this);
