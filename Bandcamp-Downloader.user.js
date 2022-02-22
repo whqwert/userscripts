@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Bandcamp Downloader
-// @namespace    https://github.com/qwhert/userscripts
+// @namespace    https://github.com/whqwert/userscripts
 // @version      1.0.3
 // @description  Adds a download link to songs on Bandcamp
 // @author       whqwert
 // @match        https://*.bandcamp.com/*
 // @icon         https://s4.bcbits.com/img/favicon/favicon-32x32.png
-// @supportURL   https://github.com/qwhert/userscripts/issues
+// @supportURL   https://github.com/whqwert/userscripts/issues
 // @license      MIT
 // @grant        GM_download
 // @connect      t4.bcbits.com
