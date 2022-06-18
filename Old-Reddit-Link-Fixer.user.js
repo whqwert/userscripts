@@ -14,7 +14,12 @@
 (function () {
 	'use strict';
 
-	// Function that actually removes the backslashes from links
+	/*
+	Function that removes the backslashes from links
+
+	Not sure if quotes or dashes are incorrectly escaped anymore,
+	but I've seen a few old posts/comments where they are.
+	*/
 	function removeBackslashes(a) {
 		a.href = a.href.replace(/%5C([\-_"])/g, '$1');
 		a.innerText = a.innerText.replace(/\\([\-_"])/g, '$1');
@@ -45,7 +50,8 @@
 	}
 
 	function addMoreButtonListener() {
-		const more = document.querySelector('a[id^="more_"]'); // 'load more comments' button
+		// 'load more comments' button
+		const more = document.querySelector('a[id^="more_"]');
 		if (more) {
 			more.addEventListener('click', function () {
 				observeNewComments();
@@ -59,7 +65,11 @@
 		addMoreButtonListener();
 	}
 
-	// Fix links on load
+	/*
+	Fix links on load
+
+	Used with '@run-at document-start' to fix links as fast as possible
+	*/
 	new MutationObserver(function () {
 		if (document.getElementsByClassName('commentarea').length) {
 			runLinkFixer(this);
