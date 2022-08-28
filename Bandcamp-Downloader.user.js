@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bandcamp Downloader
 // @namespace    https://github.com/whqwert/userscripts
-// @version      1.0.3
+// @version      1.0.4
 // @description  Adds a download link to songs on Bandcamp
 // @author       whqwert
 // @match        https://*.bandcamp.com/*
@@ -9,7 +9,6 @@
 // @supportURL   https://github.com/whqwert/userscripts/issues
 // @license      MIT
 // @grant        GM_download
-// @connect      t4.bcbits.com
 // @run-at       document-end
 // ==/UserScript==
 
@@ -21,10 +20,10 @@
 	if (adata) {
 		const albutton = document.querySelector('.share-collect-controls > ul');
 		const downloadButtonHTML = `<li id="download-button">
-            <span class="bc-ui2" style="height: 12px; width: 15px; display: inline-block; background-image: url(
-                    data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0ODcuMTU2IiBoZWlnaHQ9IjQ4Ny4xNTYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ4Ny4xNTYgNDg3LjE1NiIgZmlsbD0iIzY2NiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZD0iTTIuMTY2IDM3NC41OTZ2MTEyLjU2SDQ4NC45OVYzNzEuNjM1aC00NC40MzF2NzEuMDlINDYuNTk4di02OC4xMjl6Ii8+PHBhdGggZD0ibTI1OS45MjQgMzk3Ljk0MSAxMTQuNjE1LTE3My43OTItMzkuNzg0LjAzQzMzNC42MDQgMjQuNjg0IDE0MC4yODMgMCAxNDAuMjgzIDBzNDQuNDIgNjIuMjA4IDQ0LjU0NCAyMjQuMjkybC0zOS43ODQuMDI5IDExNC44ODEgMTczLjYyeiIvPjwvc3ZnPg==
-                ); background-size: contain">
-            </span>
+            <span class="bc-ui2 share-embed-icon" style="
+				clip-path: polygon(65% 0%, 15% 50%, 15% 85%, 65% 80%, 100% 37%);
+				transform: rotate(90deg) scale(1.07);
+			"/>
             <span class="share-embed-label">
                 <button type="button">
                     Download
