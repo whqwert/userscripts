@@ -2,7 +2,7 @@
 // @name         Old Reddit Broken Link Fixer
 // @namespace    https://github.com/whqwert/userscripts
 // @version      1.2.5
-// @description  Fixes escaped characters in links on Old Reddit
+// @description  Fixes incorrectly escaped characters in links on Old Reddit
 // @author       whqwert
 // @match        https://*.reddit.com/*/*/comments/*
 // @icon         https://www.reddit.com/favicon.ico
