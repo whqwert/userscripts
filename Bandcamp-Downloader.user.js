@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bandcamp Downloader
 // @namespace    https://github.com/whqwert/userscripts
-// @version      1.0.4
+// @version      1.0.5
 // @description  Adds a download link to songs on Bandcamp
 // @author       whqwert
 // @match        https://*.bandcamp.com/*
@@ -9,7 +9,6 @@
 // @supportURL   https://github.com/whqwert/userscripts/issues
 // @license      MIT
 // @grant        GM_download
-// @run-at       document-end
 // ==/UserScript==
 
 (function () {
@@ -22,8 +21,8 @@
 		const downloadButtonHTML = `<li id="download-button">
             <span class="bc-ui2 share-embed-icon" style="
 				clip-path: polygon(65% 0%, 15% 50%, 15% 85%, 65% 80%, 100% 37%);
-				transform: rotate(90deg) scale(1.07);
-			"/>
+				transform: rotate(90deg) scale(1.06);
+			"></span>
             <span class="share-embed-label">
                 <button type="button">
                     Download
