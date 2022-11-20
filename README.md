@@ -13,3 +13,9 @@ Fixes incorrectly escaped characters in links on Old Reddit
 ### [GitHub](https://github.com/whqwert/userscripts/raw/main/scripts/Bandcamp-Downloader.user.js) | [Greasy Fork](https://greasyfork.org/en/scripts/435824-bandcamp-downloader) 
 
 Adds buttons to download mp3 files from Bandcamp
+
+## Truffle.TV Auto-Claimer
+
+### [Github](https://github.com/whqwert/userscripts/raw/main/scripts/Truffle-Auto-Claim.user.js) | [Greasy Fork](https://greasyfork.org/en/scripts/455125-truffle-tv-auto-claimer)
+
+Auto-claims Truffle.TV channel points
