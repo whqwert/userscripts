@@ -14,8 +14,10 @@ Fixes incorrectly escaped characters in links on Old Reddit
 
 Adds buttons to download mp3 files from Bandcamp
 
+&nbsp;
+
 ## Truffle.TV Auto-Claimer
 
-### [Github](https://github.com/whqwert/userscripts/raw/main/scripts/Truffle-Auto-Claim.user.js) | [Greasy Fork](https://greasyfork.org/en/scripts/455125-truffle-tv-auto-claimer)
+### [GitHub](https://github.com/whqwert/userscripts/raw/main/scripts/Truffle-Auto-Claim.user.js) | [Greasy Fork](https://greasyfork.org/en/scripts/455125-truffle-tv-auto-claimer)
 
 Auto-claim Truffle.TV channel points
