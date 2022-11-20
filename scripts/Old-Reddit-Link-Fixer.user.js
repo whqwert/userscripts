@@ -8,6 +8,7 @@
 // @icon         https://www.reddit.com/favicon.ico
 // @supportURL   https://github.com/whqwert/userscripts/issues
 // @license      MIT
+// @grant        none
 // @run-at       document-start
 // ==/UserScript==
 
