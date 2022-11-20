@@ -18,4 +18,4 @@ Adds buttons to download mp3 files from Bandcamp
 
 ### [Github](https://github.com/whqwert/userscripts/raw/main/scripts/Truffle-Auto-Claim.user.js) | [Greasy Fork](https://greasyfork.org/en/scripts/455125-truffle-tv-auto-claimer)
 
-Auto-claims Truffle.TV channel points
+Auto-claim Truffle.TV channel points

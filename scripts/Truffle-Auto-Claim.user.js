@@ -2,7 +2,7 @@
 // @name         Truffle.TV Auto Claimer
 // @namespace    https://github.com/whqwert/userscripts
 // @version      1.0.0
-// @description  Auto-claims Truffle channel points
+// @description  Auto-claim Truffle.TV channel points
 // @author       whqwert
 // @match        https://new.ludwig.social/channel-points
 // @icon         https://cdn.bio/assets/images/branding/logomark.svg
