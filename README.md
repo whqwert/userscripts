@@ -1,6 +1,6 @@
 ## Old Reddit Broken Link Fixer
 
-### [GitHub](https://github.com/whqwert/userscripts/raw/main/Old-Reddit-Link-Fixer.user.js) | [Greasy Fork](https://greasyfork.org/en/scripts/435825-old-reddit-broken-link-fixer)
+### [GitHub](https://github.com/whqwert/userscripts/raw/main/scripts/Old-Reddit-Link-Fixer.user.js) | [Greasy Fork](https://greasyfork.org/en/scripts/435825-old-reddit-broken-link-fixer)
 
 Fixes incorrectly escaped characters in links on Old Reddit
 
