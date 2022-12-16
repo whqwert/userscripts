@@ -13,22 +13,22 @@
 // ==/UserScript==
 
 (function () {
-  "use strict";
+	'use strict';
 
-  new MutationObserver((_, o) => {
-    if (document.getElementById("root")) {
-      o.disconnect();
-      autoClaim();
-    }
-  }).observe(document.body, { childList: true, subtree: true });
+	new MutationObserver((_, o) => {
+		if (document.getElementById('root')) {
+			o.disconnect();
+			autoClaim();
+		}
+	}).observe(document.body, { childList: true, subtree: true });
 
-  function autoClaim() {
-    const shadow = document.getElementById("root").firstChild.shadowRoot;
+	function autoClaim() {
+		const shadow = document.getElementById('root').firstChild.shadowRoot;
 
-    new MutationObserver(() => {
-      const claim = shadow.querySelector(".claim");
+		new MutationObserver(() => {
+			const claim = shadow.querySelector('.claim');
 
-      if (claim) claim.click();
-    }).observe(shadow, { childList: true, subtree: true });
-  };
+			if (claim) claim.click();
+		}).observe(shadow, { childList: true, subtree: true });
+	}
 })();
