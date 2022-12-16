@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Truffle.TV Auto Claimer
 // @namespace    https://github.com/whqwert/userscripts
-// @version      1.1.0
+// @version      1.1.1
 // @description  Auto-claim Truffle.TV channel points
 // @author       whqwert
 // @match        https://new.ludwig.social/channel-points
@@ -22,7 +22,7 @@
     }
   }).observe(document.body, { childList: true, subtree: true });
 
-  const autoClaim = () => {
+  function autoClaim() {
     const shadow = document.getElementById("root").firstChild.shadowRoot;
 
     new MutationObserver(() => {
