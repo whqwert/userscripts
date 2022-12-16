@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bandcamp Downloader
 // @namespace    https://github.com/whqwert/userscripts
-// @version      1.0.6
+// @version      1.0.7
 // @description  Adds a download link to songs on Bandcamp
 // @author       whqwert
 // @match        https://*.bandcamp.com/*
@@ -13,6 +13,7 @@
 
 (function () {
 	'use strict';
+
 	const table = document.querySelectorAll('#track_table > tbody > tr');
 	const adata = unsafeWindow.TralbumData || false;
 
@@ -30,6 +31,7 @@
             </button>
         </span>
     </li>`;
+
 	function downloadSong(file, title) {
 		GM_download({
 			url: file,
@@ -37,10 +39,11 @@
 			saveAs: true
 		});
 	}
+
 	if (table.length) {
 		// isAlbum
 		const dlinks = document.getElementsByClassName('dl_link');
-		adata.trackinfo.forEach((track, i) => {
+		for (const [i, track] of adata.trackinfo.entries()) {
 			const link = dlinks[i];
 			const file = track.file['mp3-128'];
 			const title = track.title;
@@ -54,7 +57,7 @@
 				downloadSong(file, title);
 				return false;
 			};
-		});
+		};
 	} else {
 		// isSong
 		const file = unsafeWindow.TralbumData.trackinfo[0].file['mp3-128'];
