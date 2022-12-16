@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Old Reddit Broken Link Fixer
 // @namespace    https://github.com/whqwert/userscripts
-// @version      1.2.6
+// @version      1.2.7
 // @description  Fixes incorrectly escaped characters in links on Old Reddit
 // @author       whqwert
 // @match        https://*.reddit.com/*/*/comments/*
@@ -35,13 +35,9 @@
 	// When the 'load more comments' button is pressed,
 	// it waits for new comments to load and then runs the link fixer
 	function observeNewComments() {
-		// Don't do anything if there are no comments
-		const wait = document.querySelector('.commentarea > .sitetable');
-		if (!wait) return;
-
 		new MutationObserver((_, observer) => {
 			runLinkFixer(observer);
-		}).observe(wait, {
+		}).observe(document.querySelector('.commentarea > .sitetable'), {
 			childList: true
 		});
 	}
@@ -60,6 +56,7 @@
 
 	// Fix links on load
 	new MutationObserver((_, observer) => {
+		// Do nothing if there are no comments
 		if (!document.getElementsByClassName('commentarea').length) return;
 		runLinkFixer(observer);
 	}).observe(document, {
