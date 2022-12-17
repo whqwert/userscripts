@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bandcamp Downloader
 // @namespace    https://github.com/whqwert/userscripts
-// @version      1.1.0
+// @version      2.0.0
 // @description  Adds a download link to songs on Bandcamp
 // @author       whqwert
 // @match        https://*.bandcamp.com/*
@@ -13,35 +13,65 @@
 
 (function () {
 	'use strict';
-	const isMobile = document.getElementsByClassName('webkit').length;
 
-	const table = document.querySelectorAll('#track_table > tbody > tr');
 	const adata = unsafeWindow.TralbumData;
-
 	if (!adata) return;
 
-	const albutton = document.querySelector(
-		isMobile ? '.main-button' : '.share-collect-controls > ul'
-	);
+	const uiTypes = {
+		desktop: {
+			elem: '.share-collect-controls > ul',
+			button: `<li id="download-button">
+						<span class="bc-ui2 share-embed-icon" style="
+							clip-path: polygon(65% 0%, 15% 50%, 15% 85%, 65% 80%, 100% 37%);
+							transform: rotate(90deg) scale(1.06);
+						"></span>
+						<span class="share-embed-label">
+							<button type="button">
+								Download
+							</button>
+						</span>
+					</li>`,
+			insert: 'beforeend'
+		},
+		mobile1: {
+			elem: '.main-button',
+			button: `<h4 class="ft compound-button" id="download-button">
+							<button type="button" class="download-link buy-link">
+								Download Track
+							</button>
+							&nbsp;
+						</h4>`,
+			insert: 'afterend'
+		},
+		mobile2: {
+			elem: '#purchase-options-btn',
+			button: `<button id="download-button" style="
+					margin-top: .875rem;
+					background: var(--cta-background-color);
+					color: var(--cta-text-color);
+					min-height: var(--touch-target-size);
+					font-weight: bold;
+					outline-offset: -4px;">
+						Download Track
+					</button>`,
+			insert: 'afterend'
+		}
+	};
 
-	const downloadButtonHTML = isMobile
-		? `<h4 class="ft compound-button" id="download-button">
-			<button type="button" class="download-link buy-link">
-				Download Track
-			</button>
-			&nbsp;
-		</h4>`
-		: `<li id="download-button">
-			<span class="bc-ui2 share-embed-icon" style="
-				clip-path: polygon(65% 0%, 15% 50%, 15% 85%, 65% 80%, 100% 37%);
-				transform: rotate(90deg) scale(1.06);
-			"></span>
-			<span class="share-embed-label">
-				<button type="button">
-					Download
-				</button>
-			</span>
-		</li>`;
+	let uiType;
+	const data = JSON.parse(
+		document.getElementById('pagedata').getAttribute('data-blob')
+	);
+	if (!data.templglobals.is_phone) {
+		uiType = uiTypes.desktop;
+	} else {
+		// pagedata does not have as many values with mobile2
+		if (data.env) {
+			uiType = uiTypes.mobile1;
+		} else {
+			uiType = uiTypes.mobile2;
+		}
+	}
 
 	function downloadSong(file, title) {
 		GM_download({
@@ -50,6 +80,8 @@
 			saveAs: true
 		});
 	}
+
+	const table = document.querySelectorAll('#track_table > tbody > tr');
 
 	if (table.length) {
 		// isAlbum
@@ -72,10 +104,8 @@
 	} else {
 		// isSong
 		const file = unsafeWindow.TralbumData.trackinfo[0].file['mp3-128'];
-		albutton.insertAdjacentHTML(
-			isMobile ? 'afterend' : 'beforeend',
-			downloadButtonHTML
-		);
+		const { elem, insert, button } = uiType;
+		document.querySelector(elem).insertAdjacentHTML(insert, button);
 		document.getElementById('download-button').onclick = () => {
 			downloadSong(file, adata.current.title);
 		};
