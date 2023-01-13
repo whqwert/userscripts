@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Truffle.TV Auto Claimer
 // @namespace    https://github.com/whqwert/userscripts
-// @version      1.1.1
+// @version      1.2.0
 // @description  Auto-claim Truffle.TV channel points
 // @author       whqwert
 // @match        https://new.ludwig.social/channel-points
-// @match        https://jaiden.truffle.site/channel-points
+// @match        https://*.truffle.site/channel-points
 // @icon         https://cdn.bio/assets/images/branding/logomark.svg
 // @supportURL   https://github.com/whqwert/userscripts/issues
 // @license      MIT
