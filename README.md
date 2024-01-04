@@ -18,8 +18,6 @@ Hides sponsored listings on eBay
 
 Auto-claim Truffle.TV channel points
 
-# Archived scripts
-
 ## Bandcamp Downloader
 
 ### [GitHub](https://github.com/whqwert/userscripts/raw/main/scripts/Bandcamp-Downloader.user.js) | [Greasy Fork](https://greasyfork.org/en/scripts/435824-bandcamp-downloader)
