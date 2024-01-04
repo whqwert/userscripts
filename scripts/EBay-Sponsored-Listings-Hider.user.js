@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         eBay Sponsored Listings Hider
 // @namespace    https://github.com/whqwert/userscripts
-// @version      1.0.0
+// @version      2.0.0
 // @description  Hides sponsored listings on eBay
 // @author       whqwert
 // @match        https://www.ebay.com/sch/i.html
@@ -12,24 +12,35 @@
 // @run-at       document-start
 // ==/UserScript==
 
-// hijack attachShadow to make shadow DOMs always be open
-Element.prototype._attachShadow = Element.prototype.attachShadow;
-Element.prototype.attachShadow = function () {
-	return this._attachShadow({ mode: 'open' });
-};
+// block templates from being turned into shadow roots
+Element.prototype.attachShadow = () => {};
 
-window.addEventListener('load', () => {
-	const sponsoredLabels = [...document.getElementsByClassName('s-item__sep')]
-		// find 'Sponsored' label
-		.map((sep) => sep.firstElementChild.shadowRoot.lastElementChild)
-		// only hide if 'Sponsored' label is visible
-		.filter((label) => window.getComputedStyle(label).display !== 'none');
+new MutationObserver((_, obs) => {
+	// wait for search results to exist
+	if (!document.getElementById('mainContent')) return;
+	obs.disconnect();
 
-	for (const label of sponsoredLabels) {
-		let listing = label.getRootNode().host.parentElement;
-		while (listing.classList[0] !== 's-item') {
-			listing = listing.parentElement;
+	for (const template of document.querySelectorAll('template[shadowrootmode]')) {
+		// extract children from template so getComputedStyle can be used
+		const sep = template.parentElement;
+		template.outerHTML = template.innerHTML;
+
+		const [style, span] = sep.children;
+
+		// is sponsored?
+		if (window.getComputedStyle(span).display !== 'none') {
+			// find full listing element
+			let listing = sep.parentElement;
+			while (listing.classList[0] !== 's-item') {
+				listing = listing.parentElement;
+			}
+
+			// hide sponsored listing
+			listing.style.display = 'none';
 		}
-		listing.style.display = 'none';
+
+		// disable span style to stop page from breaking
+		style.disabled = true;
+		span.style.display = 'none';
 	}
-});
+}).observe(document.documentElement, { childList: true, subtree: true });
