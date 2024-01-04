@@ -21,7 +21,7 @@ new MutationObserver((_, obs) => {
 	obs.disconnect();
 
 	for (const template of document.querySelectorAll('template[shadowrootmode]')) {
-		// extract children from template so getComputedStyle can be used
+		// extract wrapper div from template so getComputedStyle can be used
 		const wrapper = template.parentElement;
 		template.outerHTML = template.innerHTML;
 
