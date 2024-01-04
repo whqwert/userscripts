@@ -22,15 +22,15 @@ new MutationObserver((_, obs) => {
 
 	for (const template of document.querySelectorAll('template[shadowrootmode]')) {
 		// extract children from template so getComputedStyle can be used
-		const sep = template.parentElement;
+		const wrapper = template.parentElement;
 		template.outerHTML = template.innerHTML;
 
-		const [style, span] = sep.children;
+		const [style, span] = wrapper.children;
 
 		// is sponsored?
 		if (window.getComputedStyle(span).display !== 'none') {
 			// find full listing element
-			let listing = sep.parentElement;
+			let listing = wrapper.parentElement;
 			while (listing.classList[0] !== 's-item') {
 				listing = listing.parentElement;
 			}
