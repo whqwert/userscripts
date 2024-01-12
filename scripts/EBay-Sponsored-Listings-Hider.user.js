@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         eBay Sponsored Listings Hider
 // @namespace    https://github.com/whqwert/userscripts
-// @version      2.0.0
+// @version      2.0.1
 // @description  Hides sponsored listings on eBay
 // @author       whqwert
-// @match        https://www.ebay.com/sch/i.html
+// @match        https://www.ebay.*/sch/i.html
 // @icon         https://pages.ebay.com/favicon.ico
 // @supportURL   https://github.com/whqwert/userscripts/issues
 // @license      MIT
