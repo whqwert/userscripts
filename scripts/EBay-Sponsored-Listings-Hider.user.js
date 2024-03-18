@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         eBay Sponsored Listings Hider
 // @namespace    https://github.com/whqwert/userscripts
-// @version      2.0.1
+// @version      3.0.0
 // @description  Hides sponsored listings on eBay
 // @author       whqwert
-// @match        https://www.ebay.*/sch/i.html
+// @match        https://www.ebay.*/sch/*
 // @icon         https://pages.ebay.com/favicon.ico
 // @supportURL   https://github.com/whqwert/userscripts/issues
 // @license      MIT
@@ -12,35 +12,25 @@
 // @run-at       document-start
 // ==/UserScript==
 
-// block templates from being turned into shadow roots
-Element.prototype.attachShadow = () => {};
-
 new MutationObserver((_, obs) => {
-	// wait for search results to exist
+	// wait for search results
 	if (!document.getElementById('mainContent')) return;
 	obs.disconnect();
 
-	for (const template of document.querySelectorAll('template[shadowrootmode]')) {
-		// extract wrapper div from template so getComputedStyle can be used
-		const wrapper = template.parentElement;
-		template.outerHTML = template.innerHTML;
+	for (const label of document.querySelectorAll('[data-w] > div')) {
+		const style = window.getComputedStyle(label);
 
-		const [style, span] = wrapper.children;
+		// position offsets
+		const o1 = parseInt(style['padding-top']);
+		const o2 = new DOMMatrixReadOnly(style.transform).f;
+		const o3 = parseInt(style['margin-top']);
 
-		// is sponsored?
-		if (window.getComputedStyle(span).display !== 'none') {
-			// find full listing element
-			let listing = wrapper.parentElement;
-			while (listing.classList[0] !== 's-item') {
-				listing = listing.parentElement;
-			}
+		// is visible (not moved)
+		const sponsored = o1 + o2 + o3 === 0;
 
-			// hide sponsored listing
-			listing.style.display = 'none';
+		if (sponsored) {
+			// hide listing
+			label.closest('.s-item').style.display = 'none';
 		}
-
-		// disable span style to stop page from breaking
-		style.disabled = true;
-		span.style.display = 'none';
 	}
 }).observe(document.documentElement, { childList: true, subtree: true });
