@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         eBay Sponsored Listings Hider
 // @namespace    https://github.com/whqwert/userscripts
-// @version      3.0.0
+// @version      4.0.0
 // @description  Hides sponsored listings on eBay
 // @author       whqwert
 // @match        https://www.ebay.*/sch/*
@@ -9,28 +9,18 @@
 // @supportURL   https://github.com/whqwert/userscripts/issues
 // @license      MIT
 // @grant        none
-// @run-at       document-start
 // ==/UserScript==
 
-new MutationObserver((_, obs) => {
-	// wait for search results
-	if (!document.getElementById('mainContent')) return;
-	obs.disconnect();
+window.addEventListener('load', () => {
+	// find sponsored label id
+	const clipped = [...document.getElementsByClassName('clipped')[0].parentElement.querySelectorAll('[id]')];
+	const sponsored = clipped[clipped.length - 1].id;
 
-	for (const label of document.querySelectorAll('[data-w] > div')) {
-		const style = window.getComputedStyle(label);
-
-		// position offsets
-		const o1 = parseInt(style['padding-top']);
-		const o2 = new DOMMatrixReadOnly(style.transform).f;
-		const o3 = parseInt(style['margin-top']);
-
-		// is visible (not moved)
-		const sponsored = o1 + o2 + o3 === 0;
-
-		if (sponsored) {
+	for (const sep of document.getElementsByClassName('s-item__sep')) {
+		// is sponsored?
+		if (sep.firstElementChild.getAttribute('aria-labelledby') === sponsored) {
 			// hide listing
-			label.closest('.s-item').style.display = 'none';
+			sep.closest('.s-item').style.display = 'none';
 		}
 	}
-}).observe(document.documentElement, { childList: true, subtree: true });
+});
